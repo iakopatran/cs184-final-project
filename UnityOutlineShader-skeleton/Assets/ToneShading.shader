@@ -2,7 +2,7 @@
 {
 	Properties
 	{
-		_Color("Color", Color) = (0.5, 0.65, 1, 1)
+		_Color("Color", Color) = (1, 1, 1, 1)
 		_MainTex("Main Texture", 2D) = "white" {}
 		[HDR]
 		_AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
@@ -68,8 +68,10 @@
 		{
 		Tags
 {
+					"RenderType" = "Opaque"
 	"LightMode" = "ForwardBase"
 	"PassFlags" = "OnlyDirectional"
+
 }
 			CGPROGRAM
 			#pragma vertex vert
@@ -150,13 +152,9 @@
 			float3 diffuse = _LightColor0.rgb * (diff * k_warm + (1 - diff) * k_cool);
 			float3 specular = _LightColor0.rgb * _SpecularColor.rgb * pow(max(0, dot(normal, halfVector)), _Glossiness);
 
-			float4 rimDot = 1 - dot(viewDir, normal);
-			float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
-			rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
-			float4 rim = rimIntensity * _RimColor;
 			
 
-				return float4(_AmbientColor + diffuse + specular, 1.0);
+				return float4 (_AmbientColor + diffuse + specular, 1.0);
 			}
 			ENDCG
 		}

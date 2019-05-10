@@ -11,8 +11,8 @@ public sealed class PostProcessOutline : PostProcessEffectSettings
     public FloatParameter depthThreshold = new FloatParameter { value = 0.2f };
     public FloatParameter normalThreshold = new FloatParameter { value = 0.4f };
     [Range(0, 1)]
-    public FloatParameter depthNormalThreshold = new FloatParameter { value = 0.5f };
-    public FloatParameter depthNormalThresholdScale = new FloatParameter { value = 7 };
+    public FloatParameter depthNormalThreshold = new FloatParameter { value = .4f };
+    public FloatParameter depthNormalThresholdScale = new FloatParameter { value = 8 };
 
 public ColorParameter color = new ColorParameter { value = Color.black };
 }

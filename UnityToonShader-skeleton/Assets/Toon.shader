@@ -18,6 +18,7 @@
 	}
 	SubShader
 	{
+			
 			Pass {
 
 			Cull Front
@@ -118,7 +119,7 @@
 			float NdotL = dot(_WorldSpaceLightPos0, normal);
 			float shadow = SHADOW_ATTENUATION(i);
 
-float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
+			float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
 			float4 light = lightIntensity * _LightColor0;
 
 			float3 viewDir = normalize(i.viewDir);
@@ -139,6 +140,7 @@ float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
 			}
 			ENDCG
 		}
+			
 		UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
 	}
 }
