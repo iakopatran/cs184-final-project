@@ -36,8 +36,7 @@ float4x4 World;
 float4x4 View;
 float4x4 Projection;
 
-float4 AmbientColor = float4(1, 1, 1, 1);
-float AmbientIntensity = 0.1;
+
 
 
 			// Combines the top and bottom colors using normal blending.
@@ -89,7 +88,7 @@ Varyings Vert(AttributesDefault v)
 {
 	Varyings o;
 	o.vertex = float4(v.vertex.xy, 0.0, 1.0);
-  o.viewSpaceDir = mul(_ClipToView, o.vertex).xyz;
+	o.viewSpaceDir = mul(_ClipToView, o.vertex).xyz;
 	o.texcoord = TransformTriangleVertexToUV(v.vertex.xy);
 
 #if UNITY_UV_STARTS_AT_TOP
@@ -103,6 +102,7 @@ Varyings Vert(AttributesDefault v)
 
 			float4 Frag(Varyings i) : SV_Target
 			{
+				
       float halfScaleFloor = floor(_Scale * 0.5);
       float halfScaleCeil = ceil(_Scale * 0.5);
 
@@ -145,8 +145,8 @@ Varyings Vert(AttributesDefault v)
 
       float4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
 
-
-      return alphaBlend(edgeColor , float4(1,1,1,1) );
+	  
+      return alphaBlend(edgeColor , color);
 			}
 			ENDHLSL
 		}
